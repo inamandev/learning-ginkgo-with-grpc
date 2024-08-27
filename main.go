@@ -4,13 +4,14 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"ginkgo-grpc-leanring-server-for-interview/lib/controllers"
-	"ginkgo-grpc-leanring-server-for-interview/lib/store"
-	pb "ginkgo-grpc-leanring-server-for-interview/students_proto"
 	"log"
 	"net"
 	"runtime/debug"
 	"time"
+
+	"github.com/inamandev/learning-ginkgo-with-grpc/lib/controllers"
+	"github.com/inamandev/learning-ginkgo-with-grpc/lib/store"
+	pb "github.com/inamandev/learning-ginkgo-with-grpc/students_proto"
 
 	"google.golang.org/grpc"
 )

@@ -2,8 +2,9 @@ package controllers
 
 import (
 	"context"
-	pb "ginkgo-grpc-leanring-server-for-interview/students_proto"
 	"log"
+
+	pb "github.com/inamandev/learning-ginkgo-with-grpc/students_proto"
 )
 
 type Server struct {

@@ -1,4 +1,4 @@
-module ginkgo-grpc-leanring-server-for-interview
+module github.com/inamandev/learning-ginkgo-with-grpc
 
 go 1.22.2
 
