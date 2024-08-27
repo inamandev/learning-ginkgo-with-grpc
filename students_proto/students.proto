@@ -1,0 +1,30 @@
+syntax = "proto3";
+option go_package = ".;students";
+
+package students;
+
+service Students {
+  rpc Read(StudentId) returns (Response) {}
+  rpc Create(StudentPayload) returns (Response) {}
+  rpc Update(StudentPayload) returns (Response) {}
+  rpc Delete(StudentId) returns (Response) {}
+}
+
+message StudentPayload {
+  int64 id = 1;
+  string name = 2;
+  int32 age = 3;
+  string email = 4;
+}
+
+message StudentId {
+  int64 id = 1;
+  string name = 2;
+  int32 age = 3;
+  string email = 4;
+}
+
+message Response {
+  bool success = 1;
+  string message = 2;
+}
