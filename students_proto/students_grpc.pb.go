@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Students_Read_FullMethodName   = "/students.Students/Read"
+	Students_Get_FullMethodName    = "/students.Students/Get"
 	Students_Create_FullMethodName = "/students.Students/Create"
 	Students_Update_FullMethodName = "/students.Students/Update"
 	Students_Delete_FullMethodName = "/students.Students/Delete"
@@ -29,7 +29,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StudentsClient interface {
-	Read(ctx context.Context, in *StudentId, opts ...grpc.CallOption) (*Response, error)
+	Get(ctx context.Context, in *StudentId, opts ...grpc.CallOption) (*Response, error)
 	Create(ctx context.Context, in *StudentPayload, opts ...grpc.CallOption) (*Response, error)
 	Update(ctx context.Context, in *StudentPayload, opts ...grpc.CallOption) (*Response, error)
 	Delete(ctx context.Context, in *StudentId, opts ...grpc.CallOption) (*Response, error)
@@ -43,10 +43,10 @@ func NewStudentsClient(cc grpc.ClientConnInterface) StudentsClient {
 	return &studentsClient{cc}
 }
 
-func (c *studentsClient) Read(ctx context.Context, in *StudentId, opts ...grpc.CallOption) (*Response, error) {
+func (c *studentsClient) Get(ctx context.Context, in *StudentId, opts ...grpc.CallOption) (*Response, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Response)
-	err := c.cc.Invoke(ctx, Students_Read_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Students_Get_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,7 +87,7 @@ func (c *studentsClient) Delete(ctx context.Context, in *StudentId, opts ...grpc
 // All implementations must embed UnimplementedStudentsServer
 // for forward compatibility.
 type StudentsServer interface {
-	Read(context.Context, *StudentId) (*Response, error)
+	Get(context.Context, *StudentId) (*Response, error)
 	Create(context.Context, *StudentPayload) (*Response, error)
 	Update(context.Context, *StudentPayload) (*Response, error)
 	Delete(context.Context, *StudentId) (*Response, error)
@@ -101,8 +101,8 @@ type StudentsServer interface {
 // pointer dereference when methods are called.
 type UnimplementedStudentsServer struct{}
 
-func (UnimplementedStudentsServer) Read(context.Context, *StudentId) (*Response, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Read not implemented")
+func (UnimplementedStudentsServer) Get(context.Context, *StudentId) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedStudentsServer) Create(context.Context, *StudentPayload) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
@@ -134,20 +134,20 @@ func RegisterStudentsServer(s grpc.ServiceRegistrar, srv StudentsServer) {
 	s.RegisterService(&Students_ServiceDesc, srv)
 }
 
-func _Students_Read_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Students_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(StudentId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StudentsServer).Read(ctx, in)
+		return srv.(StudentsServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Students_Read_FullMethodName,
+		FullMethod: Students_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StudentsServer).Read(ctx, req.(*StudentId))
+		return srv.(StudentsServer).Get(ctx, req.(*StudentId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -214,8 +214,8 @@ var Students_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*StudentsServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Read",
-			Handler:    _Students_Read_Handler,
+			MethodName: "Get",
+			Handler:    _Students_Get_Handler,
 		},
 		{
 			MethodName: "Create",

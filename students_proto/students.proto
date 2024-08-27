@@ -4,7 +4,7 @@ option go_package = ".;students";
 package students;
 
 service Students {
-  rpc Read(StudentId) returns (Response) {}
+  rpc Get(StudentId) returns (Response) {}
   rpc Create(StudentPayload) returns (Response) {}
   rpc Update(StudentPayload) returns (Response) {}
   rpc Delete(StudentId) returns (Response) {}

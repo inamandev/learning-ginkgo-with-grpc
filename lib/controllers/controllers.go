@@ -11,7 +11,7 @@ type Server struct {
 	pb.UnimplementedStudentsServer
 }
 
-func (*Server) Read(ctx context.Context, req *pb.StudentId) (*pb.Response, error) {
+func (*Server) Get(ctx context.Context, req *pb.StudentId) (*pb.Response, error) {
 	log.Println(req.Id)
 	return nil, nil
 }
