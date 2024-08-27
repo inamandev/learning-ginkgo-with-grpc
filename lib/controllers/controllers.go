@@ -12,7 +12,7 @@ type Server struct {
 }
 
 func (*Server) Read(ctx context.Context, req *pb.StudentId) (*pb.Response, error) {
-	log.Println(req.Email)
+	log.Println(req.Id)
 	return nil, nil
 }
 func (*Server) Create(ctx context.Context, req *pb.StudentPayload) (*pb.Response, error) {
